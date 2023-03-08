@@ -1,2 +1,27 @@
-# midall-frontend
-Front-end project using VueJs, HTML, CSS and JavaScript
+## Project setup
+
+```
+npm install
+```
+
+### Compiles and hot-reloads for development
+
+```
+npm run serve
+```
+
+### Compiles and minifies for production
+
+```
+npm run build
+```
+
+### Docker
+
+```
+docker-compose build --no-cache
+```
+
+```
+docker-compose up --force-recreate -d ; docker-compose logs -f
+```
