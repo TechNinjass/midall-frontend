@@ -1,10 +1,25 @@
 <template>
   <div id="app">
     <nav>
-      <router-link to="/">Home</router-link>
+      <router-link to="/">Home</router-link> | 
+      <router-link to="/tabela">Tabela</router-link> | 
+      <TabelaDados />
     </nav>
   </div>
 </template>
+
+<script>
+  import TabelaDados from './components/TabelaDados.vue';
+
+  export default {
+  name: 'App',
+  components: {
+    TabelaDados
+  }
+}
+
+</script>
+
 
 <style>
 #app {
