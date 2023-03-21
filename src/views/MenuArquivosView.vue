@@ -56,7 +56,7 @@
     }
 
     .button-text {
-        color: darkviolet;
+        color: #1E599D;
         display: inline-block;
         white-space: wrap;
         padding-top: 20px;
@@ -75,7 +75,8 @@
         font-weight: 600;
         font-size: 38px;
         line-height: 75px;
-        color: #B1D4E0;
+        color: #B1D4E0;  
+        margin-left: 10px;
     }
 
     .img {
@@ -89,3 +90,10 @@
         width: 100%;
     }
 </style>
+
+<script>
+  export default {
+    name: 'MenuArquivosView'
+  }
+</script>
+

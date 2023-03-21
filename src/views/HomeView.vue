@@ -40,10 +40,8 @@
   }
 </style>
 
-  .fundo {
-    position: absolute;
-    background: #B1D4E0;
-    height: 100%;
-    width: 100%;
+<script>
+  export default {
+    name: 'HomeView'
   }
-</style>
+</script>
