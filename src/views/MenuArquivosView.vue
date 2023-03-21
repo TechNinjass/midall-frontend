@@ -12,11 +12,11 @@
 
       <div class="button-container">
         <button class="my-button">
-          <img src="../assets/UPLOAD.jpeg" alt="listagem" class="button-icon">
+          <img src="../assets/upload.png" alt="listagem" class="button-icon">
           <span class="button-text">UPLOAD DE ARQUIVOS</span>
         </button>
         <button class="my-button">
-          <img src="../assets/listagem.jpeg" alt="upload" class="button-icon">
+          <img src="../assets/listagem.png" alt="upload" class="button-icon">
           <span class="button-text">LISTAGEM DE ARQUIVOS</span>
         </button>
       </div>
