@@ -2,8 +2,10 @@
   <div class="fundo">
     <div id="appView">
       <nav class="navbar navbar-expand-lg color-navbar">
-        <div class="container-left titulo">
+        <div class="container-left">
           <img src="../assets/logo.png" alt="" width="60" height="60" class="img"/>
+        </div>
+        <div class="titulo">
           TECH NINJAS
         </div>
       </nav>
@@ -23,6 +25,7 @@
     font-size: 38px;
     line-height: 75px;
     color: #B1D4E0;
+    margin-left: 10px;
   }
 
   .img {
