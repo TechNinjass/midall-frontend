@@ -1,18 +1,41 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="MidAll"/>
+  <div class="fundo">
+    <div id="appView">
+      <nav class="navbar navbar-expand-lg color-navbar">
+        <div class="container-left">
+          <img src="../assets/logo.png" alt="" width="60" height="60" class="img"/>
+        </div>
+        <div class="titulo">
+          TECH NINJAS
+        </div>
+      </nav>
+    </div>
   </div>
 </template>
 
-<script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
-export default {
-  name: 'HomeView',
-  components: {
-    HelloWorld
+<style scoped>
+  .color-navbar {
+    background-color:#1E599D;
   }
-}
-</script>
+
+  .titulo {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 600;
+    font-size: 38px;
+    line-height: 75px;
+    color: #B1D4E0;
+    margin-left: 10px;
+  }
+
+  .img {
+    margin-left: 10px;
+  }
+
+  .fundo {
+    position: absolute;
+    background: #B1D4E0;
+    height: 100%;
+    width: 100%;
+  }
+</style>
