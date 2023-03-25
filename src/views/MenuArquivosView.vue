@@ -12,10 +12,6 @@
 
       <div class="button-container">
         <button class="my-button">
-          <img src="../assets/upload.png" alt="listagem" class="button-icon">
-          <span class="button-text">UPLOAD DE ARQUIVOS</span>
-        </button>
-        <button class="my-button">
           <img src="../assets/listagem.png" alt="upload" class="button-icon">
           <span class="button-text">LISTAGEM DE ARQUIVOS</span>
         </button>
@@ -27,7 +23,7 @@
 <style scoped>
     .button-container {
         position: relative;
-        height: 90vh;
+        height: 75vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -56,7 +52,7 @@
     }
 
     .button-text {
-        color: #1E599D;
+        color: hwb(212 12% 38%);
         display: inline-block;
         white-space: wrap;
         padding-top: 20px;
@@ -85,7 +81,7 @@
 
     .fundo {
         position: absolute;
-        background: #B1D4E0;
+        background:  #B1D4E0;
         height: 100%;
         width: 100%;
     }

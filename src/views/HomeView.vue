@@ -9,14 +9,64 @@
           TECH NINJAS
         </div>
       </nav>
+      <div class="button-container">
+        <button class="my-button">
+          <img src="../assets/config.png" alt="listagem" class="button-icon">
+          <span class="button-text">CONFIGURAÇÕES</span>
+        </button>
+        <button class="my-button">
+          <img src="../assets/arquivo.png" alt="upload" class="button-icon">
+          <span class="button-text">ARQUIVOS</span>
+        </button>
+      </div>
     </div>
   </div>
 </template>
 
 <style scoped>
-  .color-navbar {
-    background-color:#1E599D;
-  }
+    .button-container {
+        position: relative;
+        height: 90vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        gap:200px;
+    }
+
+    .my-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+        height: auto;
+        background-color: white;
+        border-radius: 50px;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .button-icon {
+        width: 170px;
+        height: 170px;
+        padding-top: 40px;
+    }
+
+    .button-text {
+        color: #1E599D;
+        display: inline-block;
+        white-space: wrap;
+        padding-top: 20px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+        padding-left: 30px;
+    }
+
+    .color-navbar {
+        background-color:#1E599D;
+    }
 
   .titulo {
     font-family: 'Roboto';
