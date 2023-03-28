@@ -11,68 +11,17 @@
     </nav>
   </header>
   <div class="fundo">
+  <center>
   <div class="card">
-    <DataTable :value="customers" paginator showGridlines :rows="1" dataKey="id"
-      filterDisplay="menu" :loading="loading" :globalFilterFields="['name', 'country.name', 'representative.name', 'balance', 'status']">
-      <template #header>
-        <div class="flex justify-content-between">
-          <Button type="button" icon="pi pi-filter-slash" label="Clear" outlined @click="clearFilter()" />
-          <span class="p-input-icon-left">
-            <i class="pi pi-search" />
-            <InputText v-model="filters['global'].value" placeholder="Keyword Search" />
-          </span>
-        </div>
-      </template>
-      <template #empty> No customers found. </template>
-      <template #loading> Loading customers data. Please wait. </template>
-            <Column field="name" header="Name" style="min-width: 12rem">
-                <template #body="{ data }">
-                    {{ data.name }}
-                </template>
-                <template #filter="{ filterModel }">
-                    <InputText v-model="filterModel.value" type="text" class="p-column-filter" placeholder="Search by name" />
-                </template>
-            </Column>
-            <Column header="Country" filterField="country.name" style="min-width: 12rem">
-                <template #body="{ data }">
-                    <div class="flex align-items-center gap-2">
-                        <img alt="flag" src="https://primefaces.org/cdn/primevue/images/flag/flag_placeholder.png" :class="`flag flag-${data.country.code}`" style="width: 24px" />
-                        <span>{{ data.country.name }}</span>
-                    </div>
-                </template>
-                <template #filter="{ filterModel }">
-                    <InputText v-model="filterModel.value" type="text" class="p-column-filter" placeholder="Search by country" />
-                </template>
-                <template #filterclear="{ filterCallback }">
-                    <Button type="button" icon="pi pi-times" @click="filterCallback()" severity="secondary"></Button>
-                </template>
-                <template #filterapply="{ filterCallback }">
-                    <Button type="button" icon="pi pi-check" @click="filterCallback()" severity="success"></Button>
-                </template>
-                <template #filterfooter>
-                    <div class="px-3 pt-0 pb-3 text-center">Customized Buttons</div>
-                </template>
-            </Column>
-            <Column header="Agent" filterField="representative" :showFilterMatchModes="false" :filterMenuStyle="{ width: '14rem' }" style="min-width: 14rem">
-                <template #body="{ data }">
-                    <div class="flex align-items-center gap-2">
-                        <img :alt="data.representative.name" :src="`https://primefaces.org/cdn/primevue/images/avatar/${data.representative.image}`" style="width: 32px" />
-                        <span>{{ data.representative.name }}</span>
-                    </div>
-                </template>
-                <template #filter="{ filterModel }">
-                    <MultiSelect v-model="filterModel.value" :options="representatives" optionLabel="name" placeholder="Any" class="p-column-filter">
-                        <template #option="slotProps">
-                            <div class="flex align-items-center gap-2">
-                                <img :alt="slotProps.option.name" :src="`https://primefaces.org/cdn/primevue/images/avatar/${slotProps.option.image}`" style="width: 32px" />
-                                <span>{{ slotProps.option.name }}</span>
-                            </div>
-                        </template>
-                    </MultiSelect>
-                </template>
-            </Column>
+    <DataTable :value="customers" paginator :rows="1" 
+    tableStyle="color: #1E599D; font-size: 17px; font-family: 'Roboto'; font-style: normal; font-weight: 400;">
+      <template #empty> Data not found </template>
+      <Column field="name" header="NOME DO ARQUIVO" style="min-width: 12rem" sortable ></Column>
+      <Column field="name" header="TIPO DO ARQUIVO" style="min-width: 12rem" sortable ></Column>
+      <Column field="name" header="TAMANHO DO ARQUIVO" style="min-width: 12rem" sortable ></Column>
     </DataTable>
   </div>
+  </center>
   </div>
 </div>
 </template>
@@ -99,36 +48,23 @@
   .fundo {
     position: absolute;
     background: #B1D4E0;
-    height: 100%;
+    height: 90.5%;
     width: 100%;
   }
 
-  html {
-    font-size: 14px;
-  }
-
-  body {
-    font-family: var(--font-family);
-    font-weight: normal;
-    background: var(--surface-ground);
-    color: var(--text-color);
-    padding: 1rem;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-  }
-
   .card {
-    background: #fff;
+    background: #B1D4E0;
     padding: 2rem;
     border-radius: 10px;
-    margin-bottom: 1rem;
+    width: 70%;
+    margin-top: 50px;
+    border: 3px solid #1E599D;
   }
 </style>
   
 <script>
   import DataTable from 'primevue/datatable';
   import Column from 'primevue/column';
-  import { FilterMatchMode, FilterOperator } from 'primevue/api';
 
   export default {
     name: 'TabelaView',
@@ -196,10 +132,6 @@
       };
     },
 
-    created() {
-      this.initFilters();
-    },
-
     methods: {
       formatDate(value) {
         return value.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric'});
@@ -207,24 +139,6 @@
       
       formatCurrency(value) {
         return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-      },
-
-      clearFilter() {
-        this.initFilters();
-      },
-
-      initFilters() {
-        this.filters = {
-          global: { value: null, matchMode: FilterMatchMode.CONTAINS },
-          name: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-          'country.name': { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.STARTS_WITH }] },
-          representative: { value: null, matchMode: FilterMatchMode.IN },
-          date: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.DATE_IS }] },
-          balance: { operator: FilterOperator.AND, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-          status: { operator: FilterOperator.OR, constraints: [{ value: null, matchMode: FilterMatchMode.EQUALS }] },
-          activity: { value: [0, 100], matchMode: FilterMatchMode.BETWEEN },
-          verified: { value: null, matchMode: FilterMatchMode.EQUALS }
-        };
       },
 
       getCustomers(data) {
