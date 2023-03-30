@@ -14,13 +14,16 @@
           <img src="../assets/config.png" alt="listagem" class="button-icon">
           <span class="button-text">CONFIGURAÇÕES</span>
         </button>
+        <router-link to="MenuArquivos.vue">
         <button class="my-button">
+      
           <img src="../assets/arquivo.png" alt="upload" class="button-icon">
           <span class="button-text">ARQUIVOS</span>
         </button>
-      </div>
+      </router-link>
     </div>
   </div>
+</div>
 </template>
 
 <style scoped>

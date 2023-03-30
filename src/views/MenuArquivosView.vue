@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+
+
 <template>
   <div class="fundo">
     <div id="appView">
@@ -11,13 +14,16 @@
       </nav>
 
       <div class="button-container">
+        <router-link to="MenuArquivosView.vue">
         <button class="my-button">
           <img src="../assets/listagem.png" alt="upload" class="button-icon">
           <span class="button-text">LISTAGEM DE ARQUIVOS</span>
         </button>
+      </router-link>
       </div>
     </div>
   </div>
+
 </template>
 
 <style scoped>
