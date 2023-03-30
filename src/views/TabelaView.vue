@@ -15,7 +15,8 @@
   <div class="titulo-listagem">LISTAGEM DE ARQUIVOS</div>
   <div class="card">
     <input type="text" class="form-control botaoBusca" placeholder="Buscar...">
-    <b-button class="btn-limpar">Limpar</b-button>
+    <b-button type="button" class="btn-limpar">Limpar</b-button>
+    <img src="../assets/lupa.png" alt="" width="40" height="40" class="img-lupa"/>
     <DataTable :value="customers" paginator :rows="10"
     tableStyle="color: #1E599D; font-size: 20px; font-family: 'Roboto'; font-style: normal; font-weight: 400; margin-left: 120px;
     margin-top: 50px; border-collapse: separate; border-spacing: 8px;">
@@ -26,6 +27,7 @@
     </DataTable>
   </div>
   </center>
+  <b-button type="button" class="btn-voltar">Voltar</b-button>
   </div>
 </div>
 </template>
@@ -111,6 +113,29 @@
     align-items: center;
     justify-content: center;
     display: flex;
+  }
+
+  .btn-voltar {
+    border: 2px solid #1E599D;
+    color: #B1D4E0;
+    font-size: 20px; 
+    font-family: 'Roboto'; 
+    font-style: normal; 
+    font-weight: 400;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+    height: 40px;
+    width: 5%;
+    margin-left: 2%;
+    background: #1E599D;
+    margin-top: 15%;
+  }
+
+  .img-lupa {
+    margin-top: -3.3%;
+    margin-left: 20.5%;
   }
 </style>
   
