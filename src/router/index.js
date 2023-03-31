@@ -2,14 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TabelaDados from '../views/TabelaView.vue';
-import MenuArquivosView from '../views/MenuArquivosView.vue';
+import MenuArquivosView from '../views/MenuArquivos.vue';
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    name: 'Home',
+    name: 'home',
     component: HomeView
   },
   {

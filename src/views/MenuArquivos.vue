@@ -14,7 +14,7 @@ import { Link } from 'react-router-dom';
       </nav>
 
       <div class="button-container">
-        <router-link to="MenuArquivosView.vue">
+        <router-link to="tabela">
         <button class="my-button">
           <img src="../assets/listagem.png" alt="upload" class="button-icon">
           <span class="button-text">LISTAGEM DE ARQUIVOS</span>
