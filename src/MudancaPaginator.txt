@@ -247,6 +247,7 @@ export default {
     user-select: none;
     overflow: hidden;
     position: relative;
+    margin-left: 5px;
 }
 
 .p-paginator-element:focus {

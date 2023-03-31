@@ -14,16 +14,16 @@
   <center>
   <div class="titulo-listagem">LISTAGEM DE ARQUIVOS</div>
   <div class="card">
-    <input type="text" class="form-control botaoBusca" placeholder="Buscar...">
-    <b-button type="button" class="btn-limpar">Limpar</b-button>
-    <img src="../assets/lupa.png" alt="" width="40" height="40" class="img-lupa"/>
-    <DataTable :value="customers" paginator :rows="10"
+    <input type="text" class="form-control botaoBusca" placeholder="Buscar..." v-model="buscar_nome">
+    <b-button type="button" class="btn-limpar" @click="limpar">Limpar</b-button>
+    <img src="../assets/lupa.png" alt="" width="40" height="40" class="img-lupa" @click="filtro"/>
+    <DataTable :value="dados" paginator :rows="5"
     tableStyle="color: #1E599D; font-size: 20px; font-family: 'Roboto'; font-style: normal; font-weight: 400; margin-left: 120px;
     margin-top: 50px; border-collapse: separate; border-spacing: 8px;">
       <template #empty> Data not found </template>
-      <Column field="name" header="NOME DO ARQUIVO" sortable ></Column>
-      <Column field="name" header="TIPO DO ARQUIVO" sortable ></Column>
-      <Column field="name" header="TAMANHO DO ARQUIVO" sortable ></Column>
+      <Column field="nome" header="NOME DO ARQUIVO" sortable ></Column>
+      <Column field="tipo" header="TIPO DO ARQUIVO" sortable ></Column>
+      <Column field="tamanho" header="TAMANHO DO ARQUIVO" sortable ></Column>
     </DataTable>
   </div>
   </center>
@@ -130,7 +130,7 @@
     width: 5%;
     margin-left: 2%;
     background: #1E599D;
-    margin-top: 15%;
+    margin-top: 180px;
   }
 
   .img-lupa {
@@ -153,91 +153,61 @@
 
     data(){
       return {
-        customers: [
+        buscar_nome: "",
+        dadosCopia: [],
+        dados: [
           {
-            id: 1000,
-            name: 'James Butt',
-            country: {
-              name: 'Algeria',
-              code: 'dz'
-            },
-            company: 'Benton, John B Jr',
-            date: '2015-09-13',
-            status: 'unqualified',
-            verified: true,
-            activity: 17,
-            representative: {
-              name: 'Ioni Bowcher',
-              image: 'ionibowcher.png'
-            },
-            balance: 70663
+            id: 1,
+            nome: 'Teste um',
+            tipo: 'PDF',
+            tamanho: '100KB'
           },
           {
-            id: 1000,
-            name: 'James Butt 2',
-            country: {
-              name: 'Algeria',
-              code: 'dz'
-            },
-            company: 'Benton, John B Jr',
-            date: '2015-09-13',
-            status: 'unqualified',
-            verified: true,
-            activity: 17,
-            representative: {
-              name: 'Ioni Bowcher',
-              image: 'ionibowcher.png'
-            },
-            balance: 70663
-          }
+            id: 2,
+            nome: 'Teste dois',
+            tipo: 'PNG',
+            tamanho: '556MB'
+          },
+          {
+            id: 3,
+            nome: 'Teste tres',
+            tipo: 'PDF',
+            tamanho: '98KB'
+          },
+          {
+            id: 3,
+            nome: 'Teste tres',
+            tipo: 'PDF',
+            tamanho: '98KB'
+          },
+          {
+            id: 3,
+            nome: 'Teste tres',
+            tipo: 'PDF',
+            tamanho: '98KB'
+          },
+          {
+            id: 3,
+            nome: 'Teste tres',
+            tipo: 'PDF',
+            tamanho: '98KB'
+          },
         ],
-        filters: null,
-        representatives: [
-          { name: 'Amy Elsner', image: 'amyelsner.png' },
-          { name: 'Anna Fali', image: 'annafali.png' },
-          { name: 'Asiya Javayant', image: 'asiyajavayant.png' },
-          { name: 'Bernardo Dominic', image: 'bernardodominic.png' },
-          { name: 'Elwin Sharvill', image: 'elwinsharvill.png' },
-          { name: 'Ioni Bowcher', image: 'ionibowcher.png' },
-          { name: 'Ivan Magalhaes', image: 'ivanmagalhaes.png' },
-          { name: 'Onyama Limba', image: 'onyamalimba.png' },
-          { name: 'Stephen Shaw', image: 'stephenshaw.png' },
-          { name: 'XuXue Feng', image: 'xuxuefeng.png' }
-        ],
-        statuses: ['unqualified', 'qualified', 'new', 'negotiation', 'renewal', 'proposal'],
-        loading: true
       };
     },
 
     methods: {
-      formatDate(value) {
-        return value.toLocaleDateString('en-US', { day: '2-digit', month: '2-digit', year: 'numeric'});
-      },
-      
-      formatCurrency(value) {
-        return value.toLocaleString('en-US', { style: 'currency', currency: 'USD' });
-      },
-
-      getCustomers(data) {
-        return [...(data || [])].map((d) => {
-          d.date = new Date(d.date);
-          return d;
+      filtro() {
+        this.dadosCopia = this.dados;
+        this.dadosCopia = this.dados.filter((item) => {
+          console.log(this.buscar_nome);
+          return(item.nome.toLowerCase().indexOf(this.buscar_nome.toLowerCase()) > -1);
         });
       },
 
-      getSeverity(status) {
-        switch (status) {
-          case 'unqualified':
-            return 'danger';
-          case 'qualified':
-            return 'success';
-          case 'new':
-            return 'info';
-          case 'negotiation':
-            return 'warning';
-          case 'renewal':
-            return null;
-        }
+      limpar() {
+        this.buscar_nome = "";
+        this.dados = this.dadosCopia;
       }
     }
   };
