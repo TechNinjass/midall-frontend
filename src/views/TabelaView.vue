@@ -17,13 +17,13 @@
     <input type="text" class="form-control botaoBusca" placeholder="Buscar..." v-model="buscar_nome">
     <b-button type="button" class="btn-limpar" @click="limpar">Limpar</b-button>
     <img src="../assets/lupa.png" alt="" width="40" height="40" class="img-lupa" @click="filtro"/>
-    <DataTable :value="dados" paginator :rows="5"
-    tableStyle="color: #1E599D; font-size: 20px; font-family: 'Roboto'; font-style: normal; font-weight: 400; margin-left: 120px;
+    <DataTable :value="dados.Contents" paginator :rows="5"
+    tableStyle="color: #1E599D; font-size: 20px; font-family: 'Roboto'; font-style: normal; font-weight: 400; margin-left: 50px;
     margin-top: 50px; border-collapse: separate; border-spacing: 8px;">
-      <template #empty> Data not found </template>
-      <Column field="nome" header="NOME DO ARQUIVO" sortable ></Column>
-      <Column field="tipo" header="TIPO DO ARQUIVO" sortable ></Column>
-      <Column field="tamanho" header="TAMANHO DO ARQUIVO" sortable ></Column>
+      <template #empty> Sem dados </template>
+      <Column field="Key" header="NOME DO ARQUIVO" sortable ></Column>
+      <Column field="LastModified" header="DATA DE TRANSFERÊNCIA" sortable ></Column>
+      <Column field="Size" header="TAMANHO DO ARQUIVO" sortable ></Column>
     </DataTable>
   </div>
   </center>
@@ -130,7 +130,7 @@
     width: 5%;
     margin-left: 2%;
     background: #1E599D;
-    margin-top: 180px;
+    margin-top: 10%;
   }
 
   .img-lupa {
@@ -142,6 +142,7 @@
 <script>
   import DataTable from 'primevue/datatable';
   import Column from 'primevue/column';
+  import ListagemArquivos from '../services/listagemArquivos';
 
   export default {
     name: 'TabelaView',
@@ -153,62 +154,33 @@
 
     data(){
       return {
+        dados: [],
+        novosDados: [],
         buscar_nome: "",
-        dadosCopia: [],
-        dados: [
-          {
-            id: 1,
-            nome: 'Teste um',
-            tipo: 'PDF',
-            tamanho: '100KB'
-          },
-          {
-            id: 2,
-            nome: 'Teste dois',
-            tipo: 'PNG',
-            tamanho: '556MB'
-          },
-          {
-            id: 3,
-            nome: 'Teste tres',
-            tipo: 'PDF',
-            tamanho: '98KB'
-          },
-          {
-            id: 3,
-            nome: 'Teste tres',
-            tipo: 'PDF',
-            tamanho: '98KB'
-          },
-          {
-            id: 3,
-            nome: 'Teste tres',
-            tipo: 'PDF',
-            tamanho: '98KB'
-          },
-          {
-            id: 3,
-            nome: 'Teste tres',
-            tipo: 'PDF',
-            tamanho: '98KB'
-          },
-        ],
       };
     },
 
+    mounted() {
+      this.listar();
+    },
+
     methods: {
-      filtro() {
-        this.dadosCopia = this.dados;
-        this.dadosCopia = this.dados.filter((item) => {
-          console.log(this.buscar_nome);
-          return(item.nome.toLowerCase().indexOf(this.buscar_nome.toLowerCase()) > -1);
+      listar() {
+        ListagemArquivos.listar().then((resposta) => {
+          this.dados = resposta.data;
         });
+      },
+      
+      filtro() {
+        this.novosDados = this.dados.Contents.filter(item => item.Key.toLowerCase().includes(this.buscar_nome.toLowerCase()));
+        this.dados.Contents = this.novosDados;
       },
 
       limpar() {
         this.buscar_nome = "";
-        this.dados = this.dadosCopia;
-      }
+        this.listar();
+      },
+
     }
   };
 </script>
