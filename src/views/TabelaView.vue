@@ -27,7 +27,9 @@
     </DataTable>
   </div>
   </center>
-  <b-button type="button" class="btn-voltar">Voltar</b-button>
+  <router-link to="MenuArquivos">
+    <b-button type="button" class="btn-voltar">Voltar</b-button>
+  </router-link>
   </div>
 </div>
 </template>
