@@ -1,6 +1,3 @@
-import { Link } from 'react-router-dom';
-
-
 <template>
   <div class="fundo">
     <div id="appView">

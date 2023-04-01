@@ -28,7 +28,7 @@
 <style scoped>
     .button-container {
         position: relative;
-        height: 90vh;
+        height: 75vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -57,7 +57,7 @@
     }
 
     .button-text {
-        color: #1E599D;
+        color: hwb(212 12% 38%);
         display: inline-block;
         white-space: wrap;
         padding-top: 20px;
@@ -70,26 +70,26 @@
         background-color:#1E599D;
     }
 
-  .titulo {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 38px;
-    line-height: 75px;
-    color: #B1D4E0;
-    margin-left: 10px;
-  }
+    .titulo {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 75px;
+        color: #B1D4E0;  
+        margin-left: 10px;
+    }
 
-  .img {
-    margin-left: 10px;
-  }
+    .img {
+        margin-left: 10px;
+    }
 
-  .fundo {
-    position: absolute;
-    background: #B1D4E0;
-    height: 100%;
-    width: 100%;
-  }
+    .fundo {
+        position: absolute;
+        background:  #B1D4E0;
+        height: 100%;
+        width: 100%;
+    }
 </style>
 
 <script>
