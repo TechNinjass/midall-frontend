@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom';
+
+
 <template>
   <div class="fundo">
     <div id="appView">
@@ -9,26 +12,24 @@
           TECH NINJAS
         </div>
       </nav>
+
       <div class="button-container">
+        <router-link to="tabela">
         <button class="my-button">
-          <img src="../assets/config.png" alt="listagem" class="button-icon">
-          <span class="button-text">CONFIGURAÇÕES</span>
-        </button>
-        <router-link to="MenuArquivos">
-        <button class="my-button">
-          <img src="../assets/arquivo.png" alt="upload" class="button-icon">
-          <span class="button-text">ARQUIVOS</span>
+          <img src="../assets/listagem.png" alt="upload" class="button-icon">
+          <span class="button-text">LISTAGEM DE ARQUIVOS</span>
         </button>
       </router-link>
+      </div>
     </div>
   </div>
-</div>
+
 </template>
 
 <style scoped>
     .button-container {
         position: relative;
-        height: 90vh;
+        height: 75vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -57,7 +58,7 @@
     }
 
     .button-text {
-        color: #1E599D;
+        color: hwb(212 12% 38%);
         display: inline-block;
         white-space: wrap;
         padding-top: 20px;
@@ -70,30 +71,31 @@
         background-color:#1E599D;
     }
 
-  .titulo {
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 600;
-    font-size: 38px;
-    line-height: 75px;
-    color: #B1D4E0;
-    margin-left: 10px;
-  }
+    .titulo {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 38px;
+        line-height: 75px;
+        color: #B1D4E0;  
+        margin-left: 10px;
+    }
 
-  .img {
-    margin-left: 10px;
-  }
+    .img {
+        margin-left: 10px;
+    }
 
-  .fundo {
-    position: absolute;
-    background: #B1D4E0;
-    height: 100%;
-    width: 100%;
-  }
+    .fundo {
+        position: absolute;
+        background:  #B1D4E0;
+        height: 100%;
+        width: 100%;
+    }
 </style>
 
 <script>
   export default {
-    name: 'HomeView'
+    name: 'MenuArquivosView'
   }
 </script>
+
