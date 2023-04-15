@@ -3,7 +3,8 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TabelaDados from '../views/TabelaView.vue';
 import MenuArquivosView from '../views/MenuArquivos.vue';
-import ConfigView from '../views/ConfigView.vue';
+import ConfigDriveView from '../views/ConfigDriveView.vue';
+import ConfigAzureView from '../views/ConfigAzureView.vue';
 
 Vue.use(VueRouter)
 
@@ -14,9 +15,14 @@ const routes = [
     component: HomeView
   },
   {
-    path: '/config',
-    name: 'config',
-    component: ConfigView
+    path: '/configDrive',
+    name: 'configDrive',
+    component: ConfigDriveView
+  },
+  {
+    path: '/configAzure',
+    name: 'configAzure',
+    component: ConfigAzureView
   },
   {
     path: '/tabela',
