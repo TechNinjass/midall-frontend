@@ -5,6 +5,7 @@ import TabelaDados from '../views/TabelaView.vue';
 import MenuArquivosView from '../views/MenuArquivos.vue';
 import ConfigDriveView from '../views/ConfigDriveView.vue';
 import ConfigAzureView from '../views/ConfigAzureView.vue';
+import Configuracao from '../views/ConfiguracoesView.vue';
 
 Vue.use(VueRouter)
 
@@ -33,6 +34,11 @@ const routes = [
     path: '/menuArquivos',
     name: 'MenuArquivos',
     component: MenuArquivosView
+  },
+  {
+    path: '/configuracoes',
+    name: 'Configuracoes',
+    component: Configuracao
   }
 ]
 
