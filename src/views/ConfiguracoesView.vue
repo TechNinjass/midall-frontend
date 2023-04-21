@@ -11,12 +11,16 @@
         </nav>
         </div>
         <center>
-            <div class="titulo-config">CONFIGURAÇÕES</div>
+            <div class="titulo-config">TOKEN DE ACESSO</div>
         </center>
         <div class="drives">
             <div class="google">
-                <div class="sub-title">Google Drive</div>
                 <center>
+                    <div class="mesma-linha">
+                        <img src="../assets/drive.png" alt="" width="60" height="60" class="imgDrive"/>
+                        <div class="sub-title">Google Drive</div>
+                    </div>
+
                     Cliente ID:
                     <input type="text" class="form-control botaoBusca" placeholder="...">
 
@@ -26,8 +30,26 @@
                     <b-button type="button" class="btn btn-submit">Submit</b-button>
                 </center>
             </div>
+            <div class="azure">
+                <center>
+                    <div class="mesma-linha">
+                        <img src="../assets/azure.png" alt="" width="40" height="40" class="imgAzure"/>
+                        <div class="sub-title">Azure</div>
+                    </div>                        
+                
+                    Name:
+                    <input type="text" class="form-control botaoBusca" placeholder="...">
+
+                    Key:
+                    <input type="text" class="form-control botaoBusca" placeholder="...">
+
+                    Container:
+                    <input type="text" class="form-control botaoBusca" placeholder="...">
+
+                    <b-button type="button" class="btn btn-submit">Submit</b-button>
+                </center>
+            </div>
         </div>
-        <b-button type="button" class="btn voltar">Voltar</b-button>
     </div>
 </template>
 
@@ -72,10 +94,12 @@
         padding: 2rem;
         border-radius: 10px;
         width: 80%;
-        margin-top: 50px;
+        margin-top: -1%;
         margin-left: 10%;
         height: 50%;
         position: relative;
+        display : flex;
+        flex-direction : row;
 
         color: #1E599D;
         font-size: 20px; 
@@ -88,8 +112,6 @@
         padding: 2rem;
         border-radius: 10px;
         width: 40%;
-        margin-top: 20px;
-        border: 3px solid #9d1e1e;
         margin-left: 5%;
         height: 90%;
     }
@@ -98,9 +120,7 @@
         padding: 2rem;
         border-radius: 10px;
         width: 40%;
-        margin-top: 20px;
-        border: 3px solid #1e9d24;
-        margin-left: 10%;
+        margin-left: 8%;
         height: 90%;
     }
 
@@ -145,6 +165,22 @@
     .sub-title {
         margin-bottom: 2%;
         font-weight: 600;
+    }
+
+    .mesma-linha {
+        display : flex;
+        flex-direction : row;
+    }
+
+    .imgDrive {
+        margin-right: 5px;
+        margin-top: -15px;
+    }
+
+    .imgAzure {
+        margin-right: 10px;
+        
+        margin-top: -10px;
     }
 
 </style>
