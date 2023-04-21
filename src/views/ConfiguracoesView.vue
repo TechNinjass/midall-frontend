@@ -21,13 +21,15 @@
                         <div class="sub-title">Google Drive</div>
                     </div>
 
-                    Cliente ID:
-                    <input type="text" class="form-control botaoBusca" placeholder="...">
+                    <form @submit.prevent="submitCredentialsDrive">
+                        Cliente ID:
+                        <input type="text" class="form-control botaoBusca" placeholder="..." id="client_id" v-model="clientId" required>
 
-                    Cliente Secret:
-                    <input type="text" class="form-control botaoBusca" placeholder="...">
+                        Cliente Secret:
+                        <input type="text" class="form-control botaoBusca" placeholder="..." id="client_secret" v-model="clientSecret" required>
 
-                    <b-button type="button" class="btn btn-submit">Submit</b-button>
+                        <b-button type="submit" class="btn btn-submit">Submit</b-button>
+                    </form>
                 </center>
             </div>
             <div class="azure">
@@ -36,17 +38,18 @@
                         <img src="../assets/azure.png" alt="" width="40" height="40" class="imgAzure"/>
                         <div class="sub-title">Azure</div>
                     </div>                        
-                
-                    Name:
-                    <input type="text" class="form-control botaoBusca" placeholder="...">
+                    <form @submit.prevent="submitCredentialsAzure">
+                        Name:
+                        <input type="text" class="form-control botaoBusca" placeholder="..." id="account_name" v-model="account_name" required>
 
-                    Key:
-                    <input type="text" class="form-control botaoBusca" placeholder="...">
+                        Key:
+                        <input type="text" class="form-control botaoBusca" placeholder="..." id="account_key" v-model="account_key" required>
 
-                    Container:
-                    <input type="text" class="form-control botaoBusca" placeholder="...">
+                        Container:
+                        <input type="text" class="form-control botaoBusca" placeholder="..." id="container_name" v-model="container_name" required>
 
-                    <b-button type="button" class="btn btn-submit">Submit</b-button>
+                        <b-button type="button" class="btn btn-submit">Submit</b-button>
+                    </form>
                 </center>
             </div>
         </div>
@@ -186,7 +189,55 @@
 </style>
 
 <script>
+    import axios from 'axios'
+
   export default {
-    name: 'ConfiguracaoView'
+    name: 'ConfiguracaoView',
+
+    data() {
+        return {
+            clientId: '',
+            clientSecret: '',
+            account_name: '',
+            account_key: '',
+            container_name: '',
+        }
+    },
+
+    methods: {
+        async submitCredentialsDrive() {
+            console.log('submitCredentials() function is executed')
+            
+            const data = {
+                client_id: this.clientId,
+                client_secret: this.clientSecret,
+            }
+            
+            try {
+                const response = await axios.post('http://127.0.0.1:5000/drive', data)
+                console.log(response.data)
+            } catch (error) {
+                console.error(error)
+            }
+        },
+
+        async submitCredentialsAzure() {
+            console.log('submitCredentials() function is executed') // verificar se a função está sendo executada corretamente
+            
+            const data = {
+            account_name: this.account_name,
+            account_key: this.account_key,
+            container_name: this.container_name,
+            }
+            
+            try {
+            const response = await axios.post('http://127.0.0.1:5000/azure', data)
+            console.log(response.data) // verificar se a resposta está retornando corretamente
+            } catch (error) {
+            console.error(error)
+            }
+        }
+    }
+
   }
 </script>
