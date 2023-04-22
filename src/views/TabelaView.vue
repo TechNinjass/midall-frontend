@@ -18,12 +18,12 @@
       <b-button type="button" class="btn-limpar" @click="limpar">Limpar</b-button>
       <img src="../assets/lupa.png" alt="" width="40" height="40" class="img-lupa" @click="filtro"/>
       <DataTable :value="dados" paginator :rows="5"
-      tableStyle="color: #1E599D; font-size: 20px; font-family: 'Roboto'; font-style: normal; font-weight: 400; margin-left: 50px;
-      margin-top: 50px; border-collapse: separate; border-spacing: 8px;">
+        tableStyle="color: #1E599D; font-size: 20px; font-family: 'Roboto'; font-style: normal; font-weight: 400; margin-left: 50px;
+        margin-top: 50px; border-collapse: separate; border-spacing: 8px;">
         <template #empty> Sem dados </template>
         <Column field="Key" header="NOME DO ARQUIVO" sortable ></Column>
-        <Column field="LastModified" header="DATA DE TRANSFERÊNCIA"  sortable :formatter="formatarData"></Column>
-        <Column field="Size" header="TAMANHO DO ARQUIVO" sortable :formatter=  "converterKBparaMB" ></Column>
+        <Column field="LastModified" header="DATA DE TRANSFERÊNCIA"  sortable ></Column>
+        <Column field="Size" header="TAMANHO DO ARQUIVO" sortable ></Column>
       </DataTable>
     </div>
     </center>
@@ -144,19 +144,21 @@
         Column
       },
       data() {
-  return {
-    dados: [
-    { Key: 'arquivo1.txt', LastModified: '2022-04-18', Size: "1024 KB"  },
-      { Key: 'arquivo2.png', LastModified: '2022-04-19', Size: "2048 KB" },
-      { Key: 'arquivo3.docx', LastModified: '2022-04-20', Size: "3072 KB" },
-      { Key: 'arquivo4.pdf', LastModified: '2022-04-21', Size: "4096 KB" },
-      { Key: 'arquivo5.jpg', LastModified: '2022-04-22', Size: "5120 KB" },
-    ]
-  };
-},
+        return {
+          dados: [
+            { Key: 'arquivo1.txt', LastModified: '2022-04-18', Size: "1024"  },
+            { Key: 'arquivo2.png', LastModified: '2022-04-19', Size: "2048" },
+            { Key: 'arquivo3.docx', LastModified: '2022-04-20', Size: "3072" },
+            { Key: 'arquivo4.pdf', LastModified: '2022-04-21', Size: "4096" },
+            { Key: 'arquivo5.jpg', LastModified: '2022-04-22', Size: "5120" },
+          ],
+          newSize: [],
+        };
+      },
   
       mounted() {
         this.listar();
+        this.formatacaoDados();
       },
       methods: {
         listar() {
@@ -165,33 +167,42 @@
           });
         },
 
-        formatarData(data) {
-         const date = new Date(data);
-         const dia = date.getDate().toString().padStart(2, '0');
-         const mes = (date.getMonth() + 1).toString().padStart(2, '0');
-         const ano = date.getFullYear();
-        return `${dia}/${mes}/${ano}`;
+        formatacaoDados() {
+          this.converterTamanhoArquivos();
+          this.converterData();
         },
 
-      atualizarDados() {
-      this.dados = ListagemArquivos.getArquivos();
-      this.converterTamanhoArquivos();
-    },
+        converterData() {
+          this.dados.forEach(item => {
+            item.LastModified = this.formatarData(item.LastModified);
+          });
+        },
 
-      converterKBparaMB(rowData) {
-      return (rowData.Size / 1024).toFixed(2) + ' MB';
-    },
+        formatarData(data) {
+          const date = new Date(data);
+          const dia = date.getDate().toString().padStart(2, '0');
+          const mes = (date.getMonth() + 1).toString().padStart(2, '0');
+          const ano = date.getFullYear();
+          return `${dia}/${mes}/${ano}`;
+        },
 
-      converterTamanhoArquivos() {
-      this.dados.forEach(item => {
-        item.Size = this.converterKBparaMB(item);
-      });
-    },
+        converterSize(size) {
+          const sizeAtual = (size/1000);
+          const sizeFinal = sizeAtual + "MB"
+          return sizeFinal;
+        },
+
+        converterTamanhoArquivos() {
+          this.dados.forEach(item => {
+            item.Size = this.converterSize(item.Size);
+          });
+        },
 
         filtro() {
           this.novosDados = this.dados.Contents.filter(item => item.Key.toLowerCase().includes(this.buscar_nome.toLowerCase()));
           this.dados.Contents = this.novosDados;
         },
+
         limpar() {
           this.buscar_nome = "";
           this.listar();
