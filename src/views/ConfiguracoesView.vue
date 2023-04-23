@@ -254,23 +254,19 @@
 
     methods: {
         async submitCredentialsDrive() {
-            console.log('submitCredentialsDrive() function is executed')
-            
             const data = {
                 client_id: this.clientId,
                 client_secret: this.clientSecret,
             }
             
             try {
-                const response = await axios.post('http://127.0.0.1:5000/drive', data)
-                console.log(response.data)
+                await axios.post('http://127.0.0.1:5000/drive', data)
             } catch (error) {
                 console.error(error)
             }
         },
 
         async submitCredentialsAzure() {
-            console.log('submitCredentialsAzure() function is executed')
             this.show = true;
             const data = {
                 account_name: this.account_name,
@@ -280,7 +276,7 @@
             
             try {
                 await axios.post('http://127.0.0.1:5000/azure', data).then((response) => {
-                    console.log(response.data)
+                    console.log(response.data);
                     this.show = true;
                     this.account_name = "";
                     this.account_key = "";

@@ -15,20 +15,20 @@
     <div class="titulo-listagem">LISTAGEM DE ARQUIVOS</div>
     <div class="card">
       <input type="text" class="form-control botaoBusca" placeholder="Buscar..." v-model="buscar_nome">
-      <b-button type="button" class="btn-limpar" @click="limpar">Limpar</b-button>
+      <button type="button" class="btn-limpar" @click="limpar">Limpar</button>
       <img src="../assets/lupa.png" alt="" width="40" height="40" class="img-lupa" @click="filtro"/>
       <DataTable :value="dados" paginator :rows="5"
         tableStyle="color: #1E599D; font-size: 20px; font-family: 'Roboto'; font-style: normal; font-weight: 400; margin-left: 50px;
         margin-top: 50px; border-collapse: separate; border-spacing: 8px;">
         <template #empty> Sem dados </template>
-        <Column field="Key" header="NOME DO ARQUIVO" sortable ></Column>
-        <Column field="LastModified" header="DATA DE TRANSFERÊNCIA"  sortable ></Column>
-        <Column field="Size" header="TAMANHO DO ARQUIVO" sortable ></Column>
+        <Column field="name" header="NOME DO ARQUIVO" sortable ></Column>
+        <Column field="LastModified" header="DATA DE TRANSFERÊNCIA"  sortable hidden></Column>
+        <Column field="size" header="TAMANHO DO ARQUIVO" sortable ></Column>
       </DataTable>
     </div>
     </center>
     <router-link to="MenuArquivos">
-      <b-button type="button" class="btn-voltar">Voltar</b-button>
+      <button type="button" class="btn-voltar">Voltar</button>
     </router-link>
     </div>
   </div>
@@ -63,6 +63,11 @@
       width: 70%;
       margin-top: 50px;
       border: 3px solid #1E599D;
+      color: #1E599D;
+      font-size: 20px; 
+      font-family: 'Roboto'; 
+      font-style: normal; 
+      font-weight: 400;
     }
     .botaoBusca {
       margin-bottom: 30px;
@@ -124,10 +129,10 @@
       width: 5%;
       margin-left: 2%;
       background: #1E599D;
-      margin-top: 10%;
+      margin-top: 5%;
     }
     .img-lupa {
-      margin-top: -3.3%;
+      margin-top: -6%;
       margin-left: 20.5%;
     }
   </style>
@@ -145,14 +150,8 @@
       },
       data() {
         return {
-          dados: [
-            { Key: 'arquivo1.txt', LastModified: '2022-04-18', Size: "1024"  },
-            { Key: 'arquivo2.png', LastModified: '2022-04-19', Size: "2048" },
-            { Key: 'arquivo3.docx', LastModified: '2022-04-20', Size: "3072" },
-            { Key: 'arquivo4.pdf', LastModified: '2022-04-21', Size: "4096" },
-            { Key: 'arquivo5.jpg', LastModified: '2022-04-22', Size: "5120" },
-          ],
-          newSize: [],
+          dados: [],
+          buscar_nome: "",
         };
       },
   
@@ -160,10 +159,14 @@
         this.listar();
         this.formatacaoDados();
       },
+      
       methods: {
         listar() {
           ListagemArquivos.listar().then((resposta) => {
-            this.dados = resposta.data;
+            this.dados = resposta.data.files;
+            resposta.data.files.forEach(item => {
+              item.size = this.converterSize(item.size);
+            });
           });
         },
 
@@ -194,13 +197,13 @@
 
         converterTamanhoArquivos() {
           this.dados.forEach(item => {
-            item.Size = this.converterSize(item.Size);
+            item.size = this.converterSize(item.size);
           });
         },
 
         filtro() {
-          this.novosDados = this.dados.Contents.filter(item => item.Key.toLowerCase().includes(this.buscar_nome.toLowerCase()));
-          this.dados.Contents = this.novosDados;
+          this.novosDados = this.dados.filter(item => item.name.toLowerCase().includes(this.buscar_nome.toLowerCase()));
+          this.dados = this.novosDados;
         },
 
         limpar() {
