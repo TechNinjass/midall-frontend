@@ -1,17 +1,24 @@
 <template>
     <div class="fundo">
         <div id="appView">
-        <nav class="navbar navbar-expand-lg color-navbar">
-            <div class="container-left">
-            <img src="../assets/logo.png" alt="" width="60" height="60" class="img"/>
-            </div>
-            <div class="titulo">
-            TECH NINJAS
-            </div>
-        </nav>
+            <nav class="navbar navbar-expand-lg color-navbar">
+                <div class="container-left">
+                    <img src="../assets/logo.png" alt="" width="60" height="60" class="img"/>
+                </div>
+                <div class="titulo">
+                    TECH NINJAS
+                </div>
+            </nav>
         </div>
         <center>
             <div class="titulo-config">TOKEN DE ACESSO</div>
+            <template v-if="show">
+                <div class="card-modal">
+                    <div class="card-modal-title">SUCESSO!</div>
+                    <button class="close" @click="hide">&times;</button>
+                    <div class= "card-modal-sub-title">Conexão Azure realizada</div>
+                </div>
+            </template>
         </center>
         <div class="drives">
             <div class="google">
@@ -28,7 +35,7 @@
                         Cliente Secret:
                         <input type="text" class="form-control botaoBusca" placeholder="..." id="client_secret" v-model="clientSecret" required>
 
-                        <b-button type="submit" class="btn btn-submit">Submit</b-button>
+                        <button type="submit" class="btn btn-submit">Submit</button>
                     </form>
                 </center>
             </div>
@@ -48,7 +55,7 @@
                         Container:
                         <input type="text" class="form-control botaoBusca" placeholder="..." id="container_name" v-model="container_name" required>
 
-                        <b-button type="button" class="btn btn-submit">Submit</b-button>
+                        <button type="submit" class="btn btn-submit">Submit</button>
                     </form>
                 </center>
             </div>
@@ -182,14 +189,54 @@
 
     .imgAzure {
         margin-right: 10px;
-        
         margin-top: -10px;
+    }
+
+    .card-modal {
+      background: #fff;
+      padding: 2rem;
+      border-radius: 10px;
+      width: 30%;
+      margin-top: 5%;
+      z-index: 1;
+      display: block;
+      position: fixed;
+      margin-left: 35%;
+      height: 25%;
+    }
+
+    .card-modal-title {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 600;
+        font-size: 35px;
+        line-height: 60px;
+        text-align: center;
+        color: #1435A0;
+    }
+
+    .card-modal-sub-title {
+        font-family: 'Roboto';
+        font-style: normal;
+        font-weight: 500;
+        font-size: 30px;
+        line-height: 50px;
+        text-align: center;
+        color: #1435A0;
+    }
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        margin-top: -22%;
     }
 
 </style>
 
 <script>
-    import axios from 'axios'
+    import axios from 'axios';
 
   export default {
     name: 'ConfiguracaoView',
@@ -201,12 +248,13 @@
             account_name: '',
             account_key: '',
             container_name: '',
+            show: false,
         }
     },
 
     methods: {
         async submitCredentialsDrive() {
-            console.log('submitCredentials() function is executed')
+            console.log('submitCredentialsDrive() function is executed')
             
             const data = {
                 client_id: this.clientId,
@@ -222,21 +270,31 @@
         },
 
         async submitCredentialsAzure() {
-            console.log('submitCredentials() function is executed') // verificar se a função está sendo executada corretamente
-            
+            console.log('submitCredentialsAzure() function is executed')
+            this.show = true;
             const data = {
-            account_name: this.account_name,
-            account_key: this.account_key,
-            container_name: this.container_name,
+                account_name: this.account_name,
+                account_key: this.account_key,
+                container_name: this.container_name,
             }
             
             try {
-            const response = await axios.post('http://127.0.0.1:5000/azure', data)
-            console.log(response.data) // verificar se a resposta está retornando corretamente
+                await axios.post('http://127.0.0.1:5000/azure', data).then((response) => {
+                    console.log(response.data)
+                    this.show = true;
+                    this.account_name = "";
+                    this.account_key = "";
+                    this.container_name = "";
+                });
+                
             } catch (error) {
-            console.error(error)
+                console.error(error)
             }
-        }
+        },
+
+        hide() {
+            this.show = false;
+        },
     }
 
   }
