@@ -1,15 +1,6 @@
-"converterKBparaMB"  <template>
+<template>
   <div>
-    <header>
-      <nav class="navbar navbar-expand-lg color-navbar">
-        <div class="container-left">
-          <img src="../assets/logo.png" alt="" width="60" height="60" class="img"/>
-        </div>
-        <div class="titulo">
-          TECH NINJAS
-        </div>
-      </nav>
-    </header>
+    <Cabecalho></Cabecalho>
     <div class="fundo">
     <center>
     <div class="titulo-listagem">LISTAGEM DE ARQUIVOS</div>
@@ -27,29 +18,11 @@
       </DataTable>
     </div>
     </center>
-    <router-link to="MenuArquivos">
-      <button type="button" class="btn-voltar">Voltar</button>
-    </router-link>
     </div>
   </div>
   </template>
 
-  <style scoped>
-    .color-navbar {
-      background-color:#1E599D;
-    }
-    .titulo {
-      font-family: 'Roboto';
-      font-style: normal;
-      font-weight: 600;
-      font-size: 38px;
-      line-height: 75px;
-      color: #B1D4E0;
-      margin-left: 10px;
-    }
-    .img {
-      margin-left: 10px;
-    }
+  <style scooped>
     .fundo {
       position: absolute;
       background: #B1D4E0;
@@ -114,23 +87,6 @@
       justify-content: center;
       display: flex;
     }
-    .btn-voltar {
-      border: 2px solid #1E599D;
-      color: #B1D4E0;
-      font-size: 20px; 
-      font-family: 'Roboto'; 
-      font-style: normal; 
-      font-weight: 400;
-      border-radius: 5px;
-      align-items: center;
-      justify-content: center;
-      display: flex;
-      height: 40px;
-      width: 5%;
-      margin-left: 2%;
-      background: #1E599D;
-      margin-top: 5%;
-    }
     .img-lupa {
       margin-top: -6%;
       margin-left: 20.5%;
@@ -141,12 +97,14 @@
     import DataTable from 'primevue/datatable';
     import Column from 'primevue/column';
     import ListagemArquivos from '../services/listagemArquivos';
+    import Cabecalho from '../components/Cabecalho.vue';
     export default {
       name: 'TabelaView',
       
       components: {
         DataTable,
-        Column
+        Column,
+        Cabecalho,
       },
       data() {
         return {
