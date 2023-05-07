@@ -46,9 +46,7 @@
           <option value="22:00">22:00</option>
           <option value="23:00">23:00</option>
           <option value="24:00">24:00</option>
-        </select>
-    <br><br>
-    <br><br>   
+        </select>   
     <P>  CONFIGURAÇÃO DE TEMPO (MINUTOS): </P> <select>
           <option value="">Selecione os minutos</option>
           <option value="00:05">00:05</option>
@@ -63,8 +61,10 @@
           <option value="00:50">00:50</option>
           <option value="00:55">00:55</option>
           <option value="00:60">00:60</option>
-   
     </select>
+    <P>  CONFIGURAÇÃO DE DIRETÓRIO : </P> <select>
+      <option value="">selecione o diretório desejado</option>
+      </select>
     <br><br>
     </div>
   </template>
