@@ -28,7 +28,10 @@
             <span class="button-text config">DASHBOARD</span>
           </button>
        </router-link>
-    </div>
+      </div>
+      <video width="320" height="240" autoplay loop muted class="gif-ninja">
+        <source src="../assets/gifDevNinja.mp4" type="video/mp4" />
+      </video>
   </div>
 </div>
 </template>
@@ -36,7 +39,7 @@
 <style scoped>
     .button-container {
         position: relative;
-        height: 75vh;
+        height: 70vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -97,6 +100,11 @@
         margin-left: 10px;
     }
 
+    .img:hover {
+      transform: scale(1.1);
+      transition: 200ms linear;
+    }
+
     .fundo {
         position: absolute;
         background:  #B1D4E0;
@@ -106,6 +114,12 @@
 
     .config {
       margin-top: 25px;
+    }
+
+    .gif-ninja {
+      margin-left: 87%;
+      margin-top: -4%;
+      width: 12%;
     }
 </style>
 
