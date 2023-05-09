@@ -13,15 +13,21 @@
         <router-link to="Configuracoes">
           <button class="my-button">
             <img src="../assets/config.png" alt="listagem" class="button-icon">
-            <span class="button-text">CONFIGURAÇÕES</span>
-          </button>
-      </router-link>
-        <router-link to="MenuArquivos">
-          <button class="my-button">
-            <img src="../assets/arquivo.png" alt="upload" class="button-icon">
-            <span class="button-text">ARQUIVOS</span>
+            <span class="button-text config">CONFIGURAÇÕES</span>
           </button>
         </router-link>
+        <router-link to="tabela">
+          <button class="my-button">
+            <img src="../assets/listagem.png" alt="upload" class="button-icon">
+            <span class="button-text">LISTAGEM DE ARQUIVOS</span>
+          </button>
+       </router-link>
+        <router-link to="">
+          <button class="my-button">
+            <img src="../assets/grafico.png" alt="dashboard" class="button-icon">
+            <span class="button-text config">DASHBOARD</span>
+          </button>
+       </router-link>
     </div>
   </div>
 </div>
@@ -44,12 +50,17 @@
         align-items: center;
         justify-content: center;
         width: 300px;
-        height: auto;
+        height: 310px;
         background-color: white;
         border-radius: 50px;
         color: white;
         font-size: 30px;
         font-weight: bold;
+    }
+
+    .my-button:hover {
+      transform: scale(1.1);
+      transition: 200ms linear;
     }
 
     .button-icon {
@@ -91,6 +102,10 @@
         background:  #B1D4E0;
         height: 100%;
         width: 100%;
+    }
+
+    .config {
+      margin-top: 25px;
     }
 </style>
 
