@@ -33,7 +33,7 @@ export default {
 
 <style scooped>
    .color-navbar {
-        background-color:#407BFF;
+        background-color:#1E599D;
     }
 
     .titulo {
