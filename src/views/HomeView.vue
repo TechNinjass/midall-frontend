@@ -6,16 +6,25 @@
         <router-link to="Configuracoes">
           <button class="my-button">
             <img src="../assets/config.png" alt="listagem" class="button-icon">
-            <span class="button-text">CONFIGURAÇÕES</span>
-          </button>
-      </router-link>
-        <router-link to="MenuArquivos">
-          <button class="my-button">
-            <img src="../assets/arquivo.png" alt="upload" class="button-icon">
-            <span class="button-text">ARQUIVOS</span>
+            <span class="button-text config">CONFIGURAÇÕES</span>
           </button>
         </router-link>
-    </div>
+        <router-link to="tabela">
+          <button class="my-button">
+            <img src="../assets/listagem.png" alt="upload" class="button-icon">
+            <span class="button-text">LISTAGEM DE ARQUIVOS</span>
+          </button>
+       </router-link>
+        <router-link to="">
+          <button class="my-button">
+            <img src="../assets/grafico.png" alt="dashboard" class="button-icon">
+            <span class="button-text config">DASHBOARD</span>
+          </button>
+       </router-link>
+      </div>
+      <video width="320" height="240" autoplay loop muted class="gif-ninja">
+        <source src="../assets/gifDevNinja.mp4" type="video/mp4" />
+      </video>
   </div>
 </div>
 </template>
@@ -23,7 +32,7 @@
 <style scoped>
     .button-container {
         position: relative;
-        height: 75vh;
+        height: 70vh;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -37,12 +46,17 @@
         align-items: center;
         justify-content: center;
         width: 300px;
-        height: auto;
+        height: 310px;
         background-color: white;
         border-radius: 50px;
         color: white;
         font-size: 30px;
         font-weight: bold;
+    }
+
+    .my-button:hover {
+      transform: scale(1.1);
+      transition: 200ms linear;
     }
 
     .button-icon {
@@ -66,6 +80,16 @@
         background:  #B1D4E0;
         height: 100%;
         width: 100%;
+    }
+
+    .config {
+      margin-top: 25px;
+    }
+
+    .gif-ninja {
+      margin-left: 87%;
+      margin-top: -4%;
+      width: 12%;
     }
 </style>
 
