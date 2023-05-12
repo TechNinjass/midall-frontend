@@ -17,63 +17,45 @@
         <br>      
         <P>  CONFIGURAÇÃO DE TEMPO</P>
         <div class="inline-select">
-          <select class="select-left">
-            <option value="">HORAS</option>
-            <option value="01:00">01:00</option>
-            <option value="02:00">02:00</option>
-            <option value="03:00">03:00</option>
-            <option value="04:00">04:00</option>
-            <option value="05:00">05:00</option>
-            <option value="06:00">06:00</option>
-            <option value="07:00">07:00</option>
-            <option value="08:00">08:00</option>
-            <option value="09:00">09:00</option>
-            <option value="10:00">10:00</option>
-            <option value="11:00">11:00</option>
-            <option value="12:00">12:00</option>
-            <option value="13:00">13:00</option>
-            <option value="14:00">14:00</option>
-            <option value="15:00">15:00</option>
-            <option value="16:00">16:00</option>
-            <option value="17:00">17:00</option>
-            <option value="18:00">18:00</option>
-            <option value="19:00">19:00</option>
-            <option value="20:00">20:00</option>
-            <option value="21:00">21:00</option>
-            <option value="22:00">22:00</option>
-            <option value="23:00">23:00</option>
-            <option value="24:00">24:00</option>
+          <select class="select-left" v-model="configuracao.hours">
+            <option value="0">HORAS</option>
+            <option value="1">01</option>
+            <option value="2">02</option>
+            <option value="3">03</option>
+            <option value="4">04</option>
+            <option value="5">05 </option>
+            <option value="6">06 </option>
+            <option value="7">07 </option>
+            <option value="8">08 </option>
+            <option value="9">09 </option>
+            <option value="10">10 </option>
+            <option value="11">11 </option>
+            <option value="12">12 </option>
           </select>
-          <select class="select-left-min">
-            <option value="">MINUTOS</option>
-            <option value="00:05">00:05</option>
-            <option value="00:10">00:10</option>
-            <option value="00:15">00:15</option>
-            <option value="00:20">00:20</option>
-            <option value="00:25">00:25</option>
-            <option value="00:30">00:30</option>
-            <option value="00:35">00:35</option>
-            <option value="00:40">00:40</option>
-            <option value="00:45">00:45</option>
-            <option value="00:50">00:50</option>
-            <option value="00:55">00:55</option>
-            <option value="00:60">00:60</option>
+          <select class="select-left-min" v-model="configuracao.minutes">
+            <option value="0">MINUTOS</option>
+            <option value="5">  05</option>
+            <option value="10">  10</option>
+            <option value="15">  15</option>
+            <option value="20">  20</option>
+            <option value="25">  25</option>
+            <option value="30">  30</option>
           </select>
         </div>
     <br>
     <P> CONFIGURAÇÃO DE DIRETÓRIO</P> 
     <center>
-      <select>
-        <option value="">DIRETÓRIO GOOGLE DRIVE</option>
+      <select v-model="configuracao.folder_drive">
+        <option v-for="(fileDrive) in filesDrive" :key="fileDrive" v-bind:value="fileDrive" >{{fileDrive.name}}</option>
       </select>
       <br>
-      <select>
-        <option value="">DIRETÓRIO AZURE</option>
+      <select v-model="configuracao.folder_azure"> 
+        <option v-for="(fileAzure) in filesAzure" :key="fileAzure" v-bind:value="fileAzure" >{{fileAzure.name}}</option>
       </select>
     </center>
     <br><br>
         <center>
-          <button class="btn">CONFIGURAR</button>
+          <button class="btn btn-config" @click="salvar">CONFIGURAR</button>
         </center>       
     </div>
   </template>
@@ -135,7 +117,7 @@ option {
 
 }
 
-    .btn {
+    .btn-config {
         border: 2px solid #1E599D;
         color: #B1D4E0;
         font-size: 20px; 
@@ -201,3 +183,46 @@ option {
         margin-left: 3%;
       }
   </style>
+
+  <script>
+    import Configuracoes from '../services/configuracoesTransfer';
+
+    export default {
+      data() {
+        return {
+          configuracao: {
+            hours: 0,
+            minutes: 0,
+            folder_drive: "",
+            folder_azure: ""
+          },
+          filesAzure: [],
+          filesDrive: []
+        };
+      },
+
+      mounted() {
+        this.listarFilesAzure();
+        this.listarFilesDrive();
+      },
+
+      listarFilesAzure() {
+        Configuracoes.listarFolderAzure().then((resp) => {
+          this.filesAzure = resp.data;
+        });
+      },
+
+      listarFilesDrive() {
+        Configuracoes.listarFolderDrive().then((resp) => {
+          this.filesDrive = resp.data;
+        });
+      },
+
+      salvar(){
+        Configuracoes.cadastrar(this.configuracao).then(() => {
+          alert('Configurações Salvas!')
+        });
+      },
+    }
+  </script>
+  
