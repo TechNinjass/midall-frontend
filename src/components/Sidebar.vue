@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar fixed group overflow-hidden left-0 top-0 z-10 h-screen w-[calc(3.73rem)] bg-blue-500 lg:hover:w-56 hover:w-44">
+  <div class="sidebar fixed group overflow-hidden left-0 top-0 z-10 h-screen w-[calc(3.73rem)] bg-blue-500 lg:hover:w-56 hover:w-44" @mouseleave="hideSidebar">
     <div class="h-full flex flex-col justify-between">
       <div>
         <div class="mt-3 h-13 flex items-center">
@@ -15,20 +15,20 @@
                 <div class="button-container flex items-center">
                   <router-link to="Configuracoes" class="flex items-center">
                     <img src="@/assets/config.png" alt="listagem" class="button-icon my-button h-5 w-5 ml-2 mr-2 lg:mr-4" />
-                    <span class="button-text">CONFIGURAÇÕES</span>
+                    <span class="button-text"><b>CONFIGURAÇÕES</b></span>
                   </router-link>
                 </div>
               </li>
               <li>
                 <router-link to="MenuArquivos" class="flex items-center">
                   <img src="@/assets/arquivo.png" alt="upload" class="button-icon button-icon my-button h-5 w-5 ml-2 mr-2 lg:mr-4" />
-                  <span class="button-text">ARQUIVOS</span>
+                  <span class="button-text"><b>ARQUIVOS</b></span>
                 </router-link>
               </li>
               <li>
                 <a href="https://lookerstudio.google.com/reporting/981c0a4c-e39d-401b-ba8c-902dd78a3f66/page/BmrMD" target="_blank" rel="noopener noreferrer" class="flex items-center">
                   <img src="@/assets/dashboard.png" alt="dashboard" class="button-icon my-button h-5 w-5 ml-2 mr-2 lg:mr-4" />
-                  <span class="button-text">DASHBOARD</span>
+                  <span class="button-text"><b>DASHBOARD</b></span>
                 </a>
               </li>
             </ul>
@@ -45,33 +45,12 @@ export default {
   data() {
     return {};
   },
-  mounted() {
-    const sidebar = document.querySelector('.sidebar');
-    const images = sidebar.querySelectorAll('.button-icon');
-    const texts = sidebar.querySelectorAll('.button-text');
-
-    sidebar.addEventListener('mouseenter', () => {
-      texts.forEach((text) => {
-        text.style.display = 'inline';
-      });
-    });
-
-    sidebar.addEventListener('mouseleave', () => {
-      texts.forEach((text) => {
-        text.style.display = 'none';
-      });
-    });
-
-    images.forEach((image) => {
-      image.addEventListener('mouseenter', () => {
-        image.nextElementSibling.style.display = 'inline';
-      });
-
-      image.addEventListener('mouseleave', () => {
-        image.nextElementSibling.style.display = 'none';
-      });
-    });
-  },
+  methods: {
+    hideSidebar() {
+      const sidebar = document.querySelector('.sidebar');
+      sidebar.style.display = 'none';
+    }
+  }
 };
 </script>
 
