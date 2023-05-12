@@ -6,6 +6,7 @@ import MenuArquivosView from '../views/MenuArquivos.vue';
 import ConfigDriveView from '../views/ConfigDriveView.vue';
 import ConfigAzureView from '../views/ConfigAzureView.vue';
 import Configuracao from '../views/ConfiguracoesView.vue';
+import ConfigTempo from '../views/ConfigTempoView.vue';
 
 Vue.use(VueRouter)
 
@@ -39,8 +40,17 @@ const routes = [
     path: '/configuracoes',
     name: 'Configuracoes',
     component: Configuracao
-  }
+  },
+  {
+  path: '/ConfigTempo',
+  name: 'ConfigTempo',
+  component: ConfigTempo
+},
+
+
 ]
+
+ 
 
 const router = new VueRouter({
   routes
