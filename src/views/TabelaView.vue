@@ -36,7 +36,7 @@
       width: 70%;
       margin-top: 50px;
       border: 3px solid #1E599D;
-      color: #1E599D;
+      color: #B1D4E0;
       font-size: 20px; 
       font-family: 'Roboto'; 
       font-style: normal; 

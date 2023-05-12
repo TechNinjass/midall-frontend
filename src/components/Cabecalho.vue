@@ -1,7 +1,9 @@
 <template>
     <nav class="navbar navbar-expand-lg color-navbar">
+      <Sidebar v-if="isSidebarOpen"/>
         <div class="container-left">
-          <img src="../assets/logo.png" alt="" width="60" height="60" class="img"/>
+          <img src="../assets/logo.png" alt="" width="60" height="60" class="img"
+          @click="toogleSidebar"/>
         </div>
         <div class="titulo">
           TECH NINJAS
@@ -10,8 +12,22 @@
 </template>
 
 <script>
+import Sidebar from '@/components/Sidebar.vue';
 export default {
   name: 'CabecalhoComponent',
+  components:{
+    Sidebar
+  },
+  data(){
+    return{
+      isSidebarOpen: false
+    }
+  },
+  methods:{
+    toogleSidebar() {
+      this.isSidebarOpen = !this.isSidebarOpen
+    }
+  }
 }
 </script>
 
