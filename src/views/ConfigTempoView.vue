@@ -43,12 +43,13 @@
           </select>
         </div>
     <br>
-    <P> CONFIGURAÇÃO DE DIRETÓRIO</P> 
+    <P> CONFIGURAÇÃO DE DIRETÓRIO DO DRIVE</P> 
     <center>
       <select v-model="configuracao.folder_drive">
         <option v-for="(fileDrive) in filesDrive" :key="fileDrive" v-bind:value="fileDrive" >{{fileDrive.name}}</option>
       </select>
       <br>
+       <P> CONFIGURAÇÃO DE DIRETÓRIO DO AZURE</P> 
       <select v-model="configuracao.folder_azure"> 
         <option v-for="(fileAzure) in filesAzure" :key="fileAzure" v-bind:value="fileAzure" >{{fileAzure.name}}</option>
       </select>
