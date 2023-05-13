@@ -46,6 +46,7 @@
       <select v-model="configuracao.folder_azure"> 
         <option v-for="(fileAzure) in filesAzure" :key="fileAzure" v-bind:value="fileAzure" >{{fileAzure}}</option>
       </select>
+      <div>{{ filesAzure }}</div>
     </center>
     <br><br>
         <center>
@@ -206,8 +207,8 @@ option {
         this.listarFilesAzure();
         this.listarFilesDrive();
       },
-
-      listarFilesAzure() {
+      methods:{
+        listarFilesAzure() {
         Configuracoes.listarFolderAzure().then((resp) => {
           this.filesAzure = resp.data.folders;
         });
@@ -224,6 +225,8 @@ option {
           alert('Configurações Salvas!')
         });
       },
+      }
+      
     }
   </script>
   

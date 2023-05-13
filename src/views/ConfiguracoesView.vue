@@ -11,14 +11,14 @@
                             <div class="sub-title">Google Drive</div>
                         </div>
 
-                        <form @submit.prevent="submitCredentialsDrive">
+                        <form @submit.prevent="fecharModalDrive">
                             Cliente ID:
                             <input type="text" class="form-control" placeholder="..." id="client_id" v-model="clientId" required>
 
                             Cliente Secret:
                             <input type="text" class="form-control" placeholder="..." id="client_secret" v-model="clientSecret" required>
 
-                            <button type="submit" class="btn btn-submit" @click="fecharModalDrive">Submit</button>
+                            <button type="submit" class="btn btn-submit" @click="submitCredentialsDrive">Submit</button>
                         </form>
                     </center>
                 </div>
@@ -33,7 +33,7 @@
                             <img src="../assets/azure.png" alt="" width="40" height="40" class="imgAzure"/>
                             <div class="sub-title">Azure</div>
                         </div>                        
-                        <form @submit.prevent="submitCredentialsAzure">
+                        <form @submit.prevent="fecharModalAzure">
                             Name:
                             <input type="text" class="form-control" placeholder="..." id="account_name" v-model="account_name" required>
 
@@ -43,7 +43,7 @@
                             Container:
                             <input type="text" class="form-control" placeholder="..." id="container_name" v-model="container_name" required>
 
-                            <button type="submit" class="btn btn-submit" @click="fecharModalAzure">Submit</button>
+                            <button type="submit" class="btn btn-submit" @click="submitCredentialsAzure">Submit</button>
                         </form>
                     </center>
                 </div>
