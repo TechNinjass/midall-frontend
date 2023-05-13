@@ -46,12 +46,12 @@
     <P> CONFIGURAÇÃO DE DIRETÓRIO DO DRIVE</P> 
     <center>
       <select v-model="configuracao.folder_drive">
-        <option v-for="(fileDrive) in filesDrive" :key="fileDrive" v-bind:value="fileDrive" >{{fileDrive.name}}</option>
+        <option v-for="(fileDrive) in filesDrive" :key="fileDrive" v-bind:value="fileDrive" >{{fileDrive}}</option>
       </select>
       <br>
        <P> CONFIGURAÇÃO DE DIRETÓRIO DO AZURE</P> 
       <select v-model="configuracao.folder_azure"> 
-        <option v-for="(fileAzure) in filesAzure" :key="fileAzure" v-bind:value="fileAzure" >{{fileAzure.name}}</option>
+        <option v-for="(fileAzure) in filesAzure" :key="fileAzure" v-bind:value="fileAzure" >{{fileAzure}}</option>
       </select>
     </center>
     <br><br>
@@ -209,13 +209,13 @@ option {
 
       listarFilesAzure() {
         Configuracoes.listarFolderAzure().then((resp) => {
-          this.filesAzure = resp.data;
+          this.filesAzure = resp.data.folders;
         });
       },
 
       listarFilesDrive() {
         Configuracoes.listarFolderDrive().then((resp) => {
-          this.filesDrive = resp.data;
+          this.filesDrive = resp.data.folders.folders;
         });
       },
 
