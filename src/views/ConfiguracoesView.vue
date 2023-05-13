@@ -2,8 +2,6 @@
     <div class="fundo">
         <div id="appView">
             <Cabecalho></Cabecalho>
-        </div>
-
         <template v-if="showDrive">
             <div class="card-modal">
                 <div class="google">
@@ -64,6 +62,7 @@
           </button>
       </div>
     </div>
+</div>
 </template>
 
 <style scoped>

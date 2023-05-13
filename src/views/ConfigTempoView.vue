@@ -1,14 +1,7 @@
 <template>
     <div class="fundo">
       <div id="appView">
-        <nav class="navbar navbar-expand-lg color-navbar">
-          <div class="container-left">
-            <img src="../assets/logo.png" alt="" width="60" height="60" class="img"/>
-          </div>
-          <div class="titulo">
-            TECH NINJAS
-          </div>
-        </nav>
+        <Cabecalho></Cabecalho>
         <div class="titulo-config">CONFIGURAÇÕES</div>
 
       </div>
@@ -187,8 +180,15 @@ option {
 
   <script>
     import Configuracoes from '../services/configuracoesTransfer';
+    import Cabecalho from '../components/Cabecalho.vue';
 
     export default {
+      name: 'ConfigTempoView',
+
+      components: {
+        Cabecalho,
+    },
+
       data() {
         return {
           configuracao: {

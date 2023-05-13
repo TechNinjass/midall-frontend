@@ -21,7 +21,7 @@
               </li>
               <li>
                 <div class="button-container flex items-center">
-                  <router-link to="Configuracoes" class="flex items-center">
+                  <router-link to="ConfigTempo" class="flex items-center">
                     <img src="@/assets/configClaro.png" alt="listagem" class="button-icon my-button h-5 w-5 ml-2 mr-2 lg:mr-4" />
                     <span class="button-text"><b>CONFIGURAÇÕES</b></span>
                   </router-link>

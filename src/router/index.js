@@ -3,10 +3,9 @@ import VueRouter from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import TabelaDados from '../views/TabelaView.vue';
 import MenuArquivosView from '../views/MenuArquivos.vue';
-import ConfigDriveView from '../views/ConfigDriveView.vue';
-import ConfigAzureView from '../views/ConfigAzureView.vue';
 import Configuracao from '../views/ConfiguracoesView.vue';
 import ConfigTempo from '../views/ConfigTempoView.vue';
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -14,16 +13,6 @@ const routes = [
     path: '/',
     name: 'home',
     component: HomeView
-  },
-  {
-    path: '/configDrive',
-    name: 'configDrive',
-    component: ConfigDriveView
-  },
-  {
-    path: '/configAzure',
-    name: 'configAzure',
-    component: ConfigAzureView
   },
   {
     path: '/tabela',
@@ -44,9 +33,7 @@ const routes = [
   path: '/ConfigTempo',
   name: 'ConfigTempo',
   component: ConfigTempo
-},
-
-
+  }
 ]
 
  
