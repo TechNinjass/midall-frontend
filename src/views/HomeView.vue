@@ -15,12 +15,12 @@
             <span class="button-text">LISTAGEM DE ARQUIVOS</span>
           </button>
        </router-link>
-        <router-link to="">
+       <a href="https://lookerstudio.google.com/reporting/981c0a4c-e39d-401b-ba8c-902dd78a3f66/page/BmrMD">
           <button class="my-button">
             <img src="../assets/grafico.png" alt="dashboard" class="button-icon">
             <span class="button-text config">DASHBOARD</span>
           </button>
-       </router-link>
+        </a>
       </div>
       <video width="320" height="240" autoplay loop muted class="gif-ninja">
         <source src="../assets/gifDevNinja.mp4" type="video/mp4" />
@@ -37,7 +37,7 @@
         justify-content: center;
         align-items: center;
         flex-direction: row;
-        gap:200px;
+        gap:150px;
     }
 
     .my-button {
@@ -87,8 +87,8 @@
     }
 
     .gif-ninja {
-      margin-left: 87%;
-      margin-top: -4%;
+      margin-left: 88%;
+      margin-top: -5%;
       width: 12%;
     }
 </style>
