@@ -7,7 +7,6 @@ import ConfigDriveView from '../views/ConfigDriveView.vue';
 import ConfigAzureView from '../views/ConfigAzureView.vue';
 import Configuracao from '../views/ConfiguracoesView.vue';
 import ConfigTempo from '../views/ConfigTempoView.vue';
-
 Vue.use(VueRouter)
 
 const routes = [
