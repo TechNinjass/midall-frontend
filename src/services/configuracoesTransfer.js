@@ -5,11 +5,11 @@ export default{
         return http.post('/config_transfer', configuracao)
     },
 
-    listarFolderAzure:() => {
+    listarFolderAzure:()=>{
         return http.get('/azure_folders')
     },
 
-    listarFolderDrive:() => {
+    listarFolderDrive:()=>{
         return http.get('/drive_folders')
     },
 }

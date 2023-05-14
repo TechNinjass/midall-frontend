@@ -2,61 +2,125 @@
     <div class="fundo">
         <div id="appView">
             <Cabecalho></Cabecalho>
-        </div>
-        <center>
-            <div class="titulo-config">TOKEN DE ACESSO</div>
-            <template v-if="show">
-                <div class="card-modal">
-                    <div class="card-modal-title">SUCESSO!</div>
-                    <button class="close" @click="hide">&times;</button>
-                    <div class= "card-modal-sub-title">Conexão Azure realizada</div>
+        <template v-if="showDrive">
+            <div class="card-modal">
+                <div class="google">
+                    <center>
+                        <div class="mesma-linha">
+                            <img src="../assets/drive.png" alt="" width="60" height="60" class="imgDrive"/>
+                            <div class="sub-title">Google Drive</div>
+                        </div>
+
+                        <form @submit.prevent="fecharModalDrive">
+                            Cliente ID:
+                            <input type="text" class="form-control" placeholder="Client ID" id="client_id" v-model="clientId" required>
+
+                            Cliente Secret:
+                            <input type="text" class="form-control" placeholder="Client Secret" id="client_secret" v-model="clientSecret" required>
+
+                            <button type="submit" class="btn btn-submit" @click="submitCredentialsDrive">Submit</button>
+
+                        </form>
+                    </center>
                 </div>
-            </template>
-        </center>
-        <div class="drives">
-            <div class="google">
-                <center>
-                    <div class="mesma-linha">
-                        <img src="../assets/drive.png" alt="" width="60" height="60" class="imgDrive"/>
-                        <div class="sub-title">Google Drive</div>
-                    </div>
-
-                    <form @submit.prevent="submitCredentialsDrive">
-                        Cliente ID:
-                        <input type="text" class="form-control botaoBusca" placeholder="..." id="client_id" v-model="clientId" required>
-
-                        Cliente Secret:
-                        <input type="text" class="form-control botaoBusca" placeholder="..." id="client_secret" v-model="clientSecret" required>
-
-                        <button type="submit" class="btn btn-submit">Submit</button>
-                    </form>
-                </center>
             </div>
-            <div class="azure">
-                <center>
-                    <div class="mesma-linha">
-                        <img src="../assets/azure.png" alt="" width="40" height="40" class="imgAzure"/>
-                        <div class="sub-title">Azure</div>
-                    </div>                        
-                    <form @submit.prevent="submitCredentialsAzure">
-                        Name:
-                        <input type="text" class="form-control botaoBusca" placeholder="..." id="account_name" v-model="account_name" required>
+        </template>
 
-                        Key:
-                        <input type="text" class="form-control botaoBusca" placeholder="..." id="account_key" v-model="account_key" required>
+        <template  v-if="showAzure">
+            <div class="card-modal">
+                <div class="azure">
+                    <center>
+                        <div class="mesma-linha">
+                            <img src="../assets/azure.png" alt="" width="40" height="40" class="imgAzure"/>
+                            <div class="sub-title">Azure</div>
+                        </div>                        
+                        <form @submit.prevent="fecharModalAzure">
+                            Name:
+                            <input type="text" class="form-control" placeholder="Account Name" id="account_name" v-model="account_name" required>
 
-                        Container:
-                        <input type="text" class="form-control botaoBusca" placeholder="..." id="container_name" v-model="container_name" required>
+                            Key:
+                            <input type="text" class="form-control" placeholder="Account Key" id="account_key" v-model="account_key" required>
 
-                        <button type="submit" class="btn btn-submit">Submit</button>
-                    </form>
-                </center>
+                            Container:
+                            <input type="text" class="form-control" placeholder="Container Name" id="container_name" v-model="container_name" required>
+
+                            <button type="submit" class="btn btn-submit" @click="submitCredentialsAzure">Submit</button>
+                        </form>
+                    </center>
+                </div>
             </div>
-        </div>
+        </template>
+
+        <div class="button-container">
+          <button class="my-button" @click="showModalDrive">
+            <img src="../assets/drive.png" alt="google_drive" class="button-icon">
+            <span class="button-text">DRIVE</span>
+          </button>
+          
+          <button class="my-button" @click="showModalAzure">
+            <img src="../assets/azure.png" alt="azure" class="button-icon">
+            <span class="button-text">AZURE</span>
+          </button>
+      </div>
     </div>
+</div>
 </template>
 
 <style scoped>
+    .card-modal {
+      background: #fff;
+      border-radius: 20px;
+      width: 700px;
+      height: 700px;
+      margin-left: 27%;
+      z-index: 100;
+      display: block;
+      position: fixed;
+      margin-top: 6%;
+      border-color: #1435A0;
+      border-width: 3px;
+    }
+
+    .button-container {
+        position: relative;
+        height: 75vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: row;
+        gap:200px;
+    }
+
+    .my-button {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 300px;
+        height: auto;
+        background-color: white;
+        border-radius: 50px;
+        color: white;
+        font-size: 30px;
+        font-weight: bold;
+    }
+
+    .button-icon {
+        width: 170px;
+        height: 170px;
+        padding-top: 40px;
+    }
+
+    .button-text {
+        color: hwb(212 12% 38%);
+        display: inline-block;
+        white-space: wrap;
+        padding-top: 20px;
+        padding-right: 30px;
+        padding-bottom: 30px;
+        padding-left: 30px;
+    }
+
     .fundo {
         position: absolute;
         background:  #B1D4E0;
@@ -96,17 +160,17 @@
     .google {
         padding: 2rem;
         border-radius: 10px;
-        width: 40%;
+        width: 90%;
         margin-left: 5%;
-        height: 90%;
+        height: 100%;
     }
 
     .azure {
         padding: 2rem;
         border-radius: 10px;
-        width: 40%;
-        margin-left: 8%;
-        height: 90%;
+        width: 90%;
+        margin-left: 5%;
+        height: 100%;
     }
 
     .btn {
@@ -177,7 +241,7 @@
       display: block;
       position: fixed;
       margin-left: 35%;
-      height: 25%;
+      height: 50%;
     }
 
     .card-modal-title {
@@ -198,14 +262,6 @@
         line-height: 50px;
         text-align: center;
         color: #1435A0;
-    }
-
-    .close {
-        color: #aaa;
-        float: right;
-        font-size: 28px;
-        font-weight: bold;
-        margin-top: -22%;
     }
 
 </style>
@@ -229,6 +285,8 @@
             account_key: '',
             container_name: '',
             show: false,
+            showDrive: false,
+            showAzure: false,
         }
     },
 
@@ -270,6 +328,19 @@
 
         hide() {
             this.show = false;
+        },
+
+        showModalDrive() {
+            this.showDrive = true;
+        },
+        fecharModalDrive() {
+            this.showDrive = false;
+        },
+        showModalAzure() {
+            this.showAzure = true;
+        },
+        fecharModalAzure() {
+            this.showAzure = false;
         },
     }
 
