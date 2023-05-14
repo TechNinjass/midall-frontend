@@ -13,12 +13,13 @@
 
                         <form @submit.prevent="fecharModalDrive">
                             Cliente ID:
-                            <input type="text" class="form-control" placeholder="..." id="client_id" v-model="clientId" required>
+                            <input type="text" class="form-control" placeholder="Client ID" id="client_id" v-model="clientId" required>
 
                             Cliente Secret:
-                            <input type="text" class="form-control" placeholder="..." id="client_secret" v-model="clientSecret" required>
+                            <input type="text" class="form-control" placeholder="Client Secret" id="client_secret" v-model="clientSecret" required>
 
                             <button type="submit" class="btn btn-submit" @click="submitCredentialsDrive">Submit</button>
+
                         </form>
                     </center>
                 </div>
@@ -35,13 +36,13 @@
                         </div>                        
                         <form @submit.prevent="fecharModalAzure">
                             Name:
-                            <input type="text" class="form-control" placeholder="..." id="account_name" v-model="account_name" required>
+                            <input type="text" class="form-control" placeholder="Account Name" id="account_name" v-model="account_name" required>
 
                             Key:
-                            <input type="text" class="form-control" placeholder="..." id="account_key" v-model="account_key" required>
+                            <input type="text" class="form-control" placeholder="Account Key" id="account_key" v-model="account_key" required>
 
                             Container:
-                            <input type="text" class="form-control" placeholder="..." id="container_name" v-model="container_name" required>
+                            <input type="text" class="form-control" placeholder="Container Name" id="container_name" v-model="container_name" required>
 
                             <button type="submit" class="btn btn-submit" @click="submitCredentialsAzure">Submit</button>
                         </form>
@@ -70,7 +71,7 @@
       background: #fff;
       border-radius: 20px;
       width: 700px;
-      height: 400px;
+      height: 700px;
       margin-left: 27%;
       z-index: 100;
       display: block;
@@ -240,7 +241,7 @@
       display: block;
       position: fixed;
       margin-left: 35%;
-      height: 25%;
+      height: 50%;
     }
 
     .card-modal-title {
