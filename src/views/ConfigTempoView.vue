@@ -37,6 +37,7 @@
     </div>
     <br />
     <P> CONFIGURAÇÃO DE DIRETÓRIO DO DRIVE</P>
+    <div>
     <center>
       <select v-model="configuracao.folder_drive">
         <option
@@ -59,6 +60,18 @@
         </option>
       </select>
     </center>
+    <P> CONFIGURAÇÃO DE BANDA LARGA</P>
+    <select class="select-left-min" v-model="configuracao.bandwidth_limit">
+        <option value="0">Banda larga</option>
+        <option value="1000">1000</option>
+        <option value="2000">2000</option>
+        <option value="3000">3000</option>
+        <option value="4000">4000</option>
+        <option value="5000">5000</option>
+        <option value="6000">6000</option>
+        <option value="7000">7000</option>
+      </select>
+    </div>
     <br /><br />
     <center>
       <button class="btn btn-config" @click="salvar">CONFIGURAR</button>
@@ -201,6 +214,7 @@ export default {
       configuracao: {
         hours: 0,
         minutes: 0,
+        bandwidth_limit: 0,
         folder_drive: "",
         folder_azure: "",
       },
