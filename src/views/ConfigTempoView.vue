@@ -5,7 +5,6 @@
       <div class="titulo-config">CONFIGURAÇÕES</div>
     </div>
     <div></div>
-    <br />
     <P> CONFIGURAÇÃO DE TEMPO</P>
     <div class="inline-select">
       <select class="select-left" v-model="configuracao.hours">
@@ -36,43 +35,46 @@
       </select>
     </div>
     <br />
-    <P> CONFIGURAÇÃO DE DIRETÓRIO DO DRIVE</P>
     <div>
-    <center>
-      <select v-model="configuracao.folder_drive">
-        <option
-          v-for="fileDrive in filesDrive"
-          :key="fileDrive"
-          v-bind:value="fileDrive"
-        >
-          {{ fileDrive }}
-        </option>
-      </select>
-      <br />
-      <P> CONFIGURAÇÃO DE DIRETÓRIO DO AZURE</P>
-      <select v-model="configuracao.folder_azure">
-        <option
-          v-for="fileAzure in filesAzure"
-          :key="fileAzure"
-          v-bind:value="fileAzure"
-        >
-          {{ fileAzure }}
-        </option>
-      </select>
-    </center>
-    <P> CONFIGURAÇÃO DE BANDA LARGA</P>
-    <select class="select-left-min" v-model="configuracao.bandwidth_limit">
-        <option value="0">Banda larga</option>
-        <option value="1000">1000</option>
-        <option value="2000">2000</option>
-        <option value="3000">3000</option>
-        <option value="4000">4000</option>
-        <option value="5000">5000</option>
-        <option value="6000">6000</option>
-        <option value="7000">7000</option>
-      </select>
+      <div class="inline-select">
+      <P class="select-left-p"> CONFIGURAÇÃO DE DIRETÓRIO DO DRIVE</P>
+      <P class="select-left-min-p"> CONFIGURAÇÃO DE DIRETÓRIO DO AZURE</P>
+      </div>
+      <div class="inline-select">
+        <select v-model="configuracao.folder_drive" class="select-left">
+          <option
+            v-for="fileDrive in filesDrive"
+            :key="fileDrive"
+            v-bind:value="fileDrive"
+          >
+            {{ fileDrive }}
+          </option>
+        </select>
+        <select v-model="configuracao.folder_azure" class="select-left-min">
+          <option
+            v-for="fileAzure in filesAzure"
+            :key="fileAzure"
+            v-bind:value="fileAzure"
+          >
+            {{ fileAzure }}
+          </option>
+        </select>
+      </div>
+      <br>
+      <center>
+        <P> CONFIGURAÇÃO DE BANDA LARGA</P>
+        <select class="select-left-min" v-model="configuracao.bandwidth_limit">
+            <option value="0">BANDA LARGA</option>
+            <option value="1000">1000</option>
+            <option value="2000">2000</option>
+            <option value="3000">3000</option>
+            <option value="4000">4000</option>
+            <option value="5000">5000</option>
+            <option value="6000">6000</option>
+            <option value="7000">7000</option>
+        </select>
+      </center>
     </div>
-    <br /><br />
     <center>
       <button class="btn btn-config" @click="salvar">CONFIGURAR</button>
     </center>
@@ -190,12 +192,21 @@ option {
 }
 
 .select-left {
-  margin-left: 28%;
+  margin-left: 23%;
 }
 
 .select-left-min {
   margin-left: 3%;
 }
+
+.select-left-p {
+  margin-left: 25%;
+}
+
+.select-left-min-p {
+  margin-left: 7%;
+}
+
 </style>
 
   <script>
